@@ -38,6 +38,8 @@ const timer = (deadline) => {
         timerMinutes.textContent = valueData(minutes);
         timerSeconds.textContent = valueData(seconds);
 
+        let timerId = setInterval(updateClock, 1000);
+
         if (timeRemaining < 0) {
             timerHours.textContent = '00';
             timerMinutes.textContent = '00';
@@ -48,8 +50,6 @@ const timer = (deadline) => {
     };
 
     updateClock();
-    let timerId = setInterval(updateClock, 1000);
-
 };
 
 export default timer;
