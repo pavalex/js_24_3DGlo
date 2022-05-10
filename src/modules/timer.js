@@ -39,10 +39,11 @@ const timer = (deadline) => {
         timerSeconds.textContent = valueData(seconds);
 
         if (timeRemaining < 0) {
-            clearInterval(timerId);
             timerHours.textContent = '00';
             timerMinutes.textContent = '00';
             timerSeconds.textContent = '00';
+
+            clearInterval(timerId);
         }
     };
 
