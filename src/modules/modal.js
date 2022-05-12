@@ -30,17 +30,10 @@ const modal = () => {
         ], 300);
     }
 
-    const showBlock = () => {
-        modal.style.display = 'block';
-    };
-
     buttons.forEach(btn => {
-
-
        btn.addEventListener('click', () => {
           const widthWindow = window.innerWidth;
-           showBlock();
-
+          modal.style.display = 'block';
           if (widthWindow > 768) {
               idInterval = requestAnimationFrame(animationPopup);
           }
