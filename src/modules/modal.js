@@ -39,7 +39,6 @@ const modal = () => {
 
        btn.addEventListener('click', () => {
           const widthWindow = window.innerWidth;
-           // modal.style.display = 'block';
            showBlock();
 
           if (widthWindow > 768) {
