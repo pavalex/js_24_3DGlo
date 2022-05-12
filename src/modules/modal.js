@@ -1,11 +1,10 @@
 const modal = () => {
     const modal = document.querySelector('.popup');
+    const popup = document.querySelector('.popup');
     const popupContent = document.querySelector('.popup-content');
     const buttons = document.querySelectorAll('.popup-btn');
     const closeBtn = modal.querySelector('.popup-close');
     const scroll = document.querySelector('main>a');
-
-    const width = document.documentElement.offsetWidth;
 
     let count = 0;
     let idInterval;
@@ -20,14 +19,30 @@ const modal = () => {
             cancelAnimationFrame(idInterval);
         }
 
-        popupContent.style.transform = `skewX(${count}deg)`;
+        popupContent.animate([
+            {opacity: '0'},
+            {transition: 'opacity 1s linear'}
+        ], 500);
+
+        popup.animate([
+            {opacity: '0'},
+            {transition: 'opacity 0.5s linear'}
+        ], 300);
     }
 
-    buttons.forEach(btn => {
-       btn.addEventListener('click', () => {
-          modal.style.display = 'block';
+    const showBlock = () => {
+        modal.style.display = 'block';
+    };
 
-          if (width > 768) {
+    buttons.forEach(btn => {
+
+
+       btn.addEventListener('click', () => {
+          const widthWindow = window.innerWidth;
+           // modal.style.display = 'block';
+           showBlock();
+
+          if (widthWindow > 768) {
               idInterval = requestAnimationFrame(animationPopup);
           }
        });
