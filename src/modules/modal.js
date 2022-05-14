@@ -1,7 +1,5 @@
 const modal = () => {
     const modal = document.querySelector('.popup');
-    const popup = document.querySelector('.popup');
-    const popupContent = document.querySelector('.popup-content');
     const buttons = document.querySelectorAll('.popup-btn');
     const closeBtn = modal.querySelector('.popup-close');
     const scroll = document.querySelector('main>a');
@@ -9,31 +7,24 @@ const modal = () => {
     let count = 0;
     let idInterval;
 
+
     function animationPopup() {
-        count++;
+        let opacityValue = count * 0.04;
 
-        idInterval = requestAnimationFrame(animationPopup);
+        modal.style.opacity = `${opacityValue}`;
 
-        if (count > 4) {
-            count = 0;
-            cancelAnimationFrame(idInterval);
+        if (count < 25) {
+            idInterval = requestAnimationFrame(animationPopup);
         }
 
-        popupContent.animate([
-            {opacity: '0'},
-            {transition: 'opacity 1s linear'}
-        ], 500);
-
-        popup.animate([
-            {opacity: '0'},
-            {transition: 'opacity 0.5s linear'}
-        ], 300);
+        count++;
     }
 
     buttons.forEach(btn => {
        btn.addEventListener('click', () => {
           const widthWindow = window.innerWidth;
           modal.style.display = 'block';
+
           if (widthWindow > 768) {
               idInterval = requestAnimationFrame(animationPopup);
           }
@@ -42,6 +33,7 @@ const modal = () => {
 
     closeBtn.addEventListener('click', () => {
         modal.style.display = 'none';
+        count = 0;
     });
 
     scroll.addEventListener('click', function (e) {
