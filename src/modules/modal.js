@@ -4,6 +4,7 @@ const modal = () => {
     const closeBtn = modal.querySelector('.popup-close');
     const scroll = document.querySelector('main>a');
 
+    let active = false;
     let count = 0;
     let idInterval;
 
@@ -25,9 +26,15 @@ const modal = () => {
           const widthWindow = window.innerWidth;
           modal.style.display = 'block';
 
-          if (widthWindow > 768) {
-              idInterval = requestAnimationFrame(animationPopup);
-          }
+           if (active) {
+               cancelAnimationFrame(idInterval);
+               active = false;
+           } else {
+               if (widthWindow > 768) {
+                   idInterval = requestAnimationFrame(animationPopup);
+                   active = true;
+               }
+           }
        });
     });
 
