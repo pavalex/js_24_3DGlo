@@ -16,6 +16,8 @@ const modal = () => {
 
         if (count < 25) {
             idInterval = requestAnimationFrame(animationPopup);
+        } else {
+            cancelAnimationFrame(idInterval);
         }
 
         count++;
