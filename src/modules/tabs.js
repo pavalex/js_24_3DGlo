@@ -17,10 +17,6 @@ const tabs = () => {
             })
         }
     });
-
-    console.log(tabPanel);
-    console.log(tabs);
-    console.log(tabContent);
 };
 
 export default  tabs;
