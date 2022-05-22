@@ -1,5 +1,5 @@
 const dataValidation = () => {
-    const calcItems = document.querySelectorAll('.calc-item');
+    const calcItems = document.querySelectorAll('.calc-block input[type="text"]');
     const inputName = document.querySelectorAll('input[placeholder="Ваше имя"]');
     const inputMessage = document.querySelector('input[placeholder="Ваше сообщение"]');
     const inputEmail = document.querySelectorAll('input[type="email"]');
