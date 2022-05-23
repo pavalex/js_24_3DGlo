@@ -5,21 +5,6 @@ const calc = (price = 100) => {
     const calcCount = document.querySelector('.calc-count');
     const calcDay = document.querySelector('.calc-day');
     const total = document.getElementById('total');
-    const time =1000;
-    const step = 1;
-
-    const inputResult = (value) => {
-        const timeout = Math.round(time / (value / step));
-
-        for (let i = 0; i <= value; i++) {
-            const start = setTimeout(() => {
-                total.textContent = i.toString();
-                if (i === value) {
-                    clearTimeout(start);
-                }
-            }, timeout);
-        }
-    };
 
     const countCalc = () => {
         const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
@@ -45,7 +30,7 @@ const calc = (price = 100) => {
             totalValue = 0;
         }
 
-        inputResult(totalValue);
+        total.textContent = totalValue.toString();
     };
 
     calcBlock.addEventListener('input', (e) => {
