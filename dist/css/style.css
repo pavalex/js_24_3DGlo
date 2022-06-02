@@ -1,5 +1,7 @@
-h1 {
-    color: green;
-    text-align: center;
-    margin-top: 50px;
+.error {
+    outline: solid 2px red;
+}
+
+.error:focus {
+    outline: solid 2px red;
 }
