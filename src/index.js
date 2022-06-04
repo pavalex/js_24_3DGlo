@@ -10,7 +10,7 @@ import sendForm from "./modules/sendForm";
 timer('03 june 2022');
 menu();
 modal();
-dataValidation();
+// dataValidation();
 tabs();
 slider();
 calc(100);
@@ -27,8 +27,8 @@ sendForm({
     formId: 'form2',
     someElem: [
         {
-            type: '',
-            id: ''
+            type: 'block',
+            id: 'total'
         }
     ]
 });
@@ -36,8 +36,8 @@ sendForm({
     formId: 'form3',
     someElem: [
         {
-            type: '',
-            id: ''
+            type: 'block',
+            id: 'total'
         }
     ]
 });

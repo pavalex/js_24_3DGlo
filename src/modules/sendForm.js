@@ -1,5 +1,4 @@
-import {validateData} from "./helpers";
-
+import {maskPhone, validateData} from "./helpers";
 
 
 const sendForm = ({formId, someElem = []}) => {
@@ -11,14 +10,17 @@ const sendForm = ({formId, someElem = []}) => {
     const successText = 'Спасибо! Наш менеджер с вами свяжется!';
 
     validateData();
+    maskPhone('input[type="tel"]', '+7 (___) ___ __ __');
 
     const validate = (list) => {
         let success = false;
 
         list.forEach(input => {
-            if (input.value) {
-                input.classList.remove('error');
-                success = true;
+            if (input.type === "tel") {
+                if (input.value.length > 17) {
+                    input.classList.remove('error');
+                    success = true;
+                }
             }
         })
 
@@ -26,12 +28,19 @@ const sendForm = ({formId, someElem = []}) => {
     };
 
     const sendData = (data) => {
-
         const dataLoad = {
             "user_name": data[name="user_name"],
             "user_email": data[name="user_email"],
             "user_phone": data[name="user_phone"]
         };
+
+        if (data.total > 0) {
+            dataLoad.total = data.total;
+        }
+
+        if (data[name="user_message"] !== undefined && data[name="user_message"].length > 0) {
+            dataLoad.user_message = data[name="user_message"];
+        }
 
         return fetch('https://jsonplaceholder.typicode.com/posts', {
             method: 'POST',
@@ -47,7 +56,12 @@ const sendForm = ({formId, someElem = []}) => {
         const formBody = {};
 
         statusBlock.textContent = loadText;
+        statusBlock.style.color = '#fff';
         form.append(statusBlock);
+
+        setTimeout(() => {
+            statusBlock.remove();
+        }, 5000);
 
         formData.forEach((val, key) => {
             formBody[key] = val;
@@ -85,7 +99,8 @@ const sendForm = ({formId, someElem = []}) => {
             throw new Error('Верните форму на место');
         }
 
-        form.addEventListener('invalid', ()=>{
+        form.addEventListener('invalid', (event)=>{
+            event.preventDefault();
 
             formElements.forEach(input => {
                 if(input.hasAttribute('required') && !input.value) {
@@ -99,6 +114,7 @@ const sendForm = ({formId, someElem = []}) => {
             event.preventDefault();
 
             submitForm();
+
         });
     } catch (error) {
         console.log(error.message);
